@@ -1,0 +1,8 @@
+{
+  "name": "Rahul Sharma",
+  "age": 27,
+  "joinDate": "2023-08-15",
+  "projectJoinDate": "2026-01-05",
+  "salary": 72000,
+  "role": "DEVELOPER"
+}
