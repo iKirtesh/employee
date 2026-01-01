@@ -1,6 +1,6 @@
 package com.ecommerce.employee.service;
 
-
+import com.ecommerce.employee.exception.ResourceException;
 import com.ecommerce.employee.repository.EmployeeRepository;
 import com.ecommerce.employee.dto.EmployeeRequestDTO;
 import com.ecommerce.employee.dto.EmployeeResponseDTO;
@@ -18,6 +18,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeResponseDTO create(EmployeeRequestDTO dto) {
+
+        if (repository.existsByName(dto.getName())) {
+            throw new ResourceException("Employee already exists with name: " + dto.getName());
+        }
+
         Employee employee = Employee.builder()
                 .name(dto.getName())
                 .age(dto.getAge())
@@ -29,6 +34,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         return mapToDTO(repository.save(employee));
     }
+
 
     @Override
     public EmployeeResponseDTO getById(Long id) {
